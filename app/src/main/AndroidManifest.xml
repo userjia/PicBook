@@ -17,7 +17,7 @@
         </activity>
 
         <activity
-            android:name=".EditBookActivity">
+            android:name=".BookEditActivity">
         </activity>
         <activity
             android:name=".PageListActivity">
@@ -26,7 +26,7 @@
             android:name=".PageActivity">
         </activity>
         <activity
-            android:name=".AddPageActivity">
+            android:name=".PageEditActivity">
         </activity>
 
     </application>

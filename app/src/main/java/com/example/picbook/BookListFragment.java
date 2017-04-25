@@ -33,13 +33,13 @@ public class BookListFragment extends ListFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {//上方选项
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.book_setup, menu);
+        inflater.inflate(R.menu.main_menu, menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {//菜单具体点击行为
         switch (item.getItemId()) {
             case R.id.menu_item_new_book:
-                Intent intent = new Intent(getActivity(), EditBookActivity.class);
+                Intent intent = new Intent(getActivity(), BookEditActivity.class);
                 //intent.putExtra(EditBookFragment.EXTRA_BOOK_ID, book.getId());
                 //startActivityForResult(intent, 0);
                 startActivity(intent);

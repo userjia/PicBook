@@ -15,8 +15,6 @@ public class Book {
     private String author;
     private String title;
     private String intro;
-    private ArrayList pages;
-
     private ArrayList<Page> mPages;
     private String FILENAME;
 
@@ -149,5 +147,8 @@ public class Book {
         this.intro = i;
     }/**/
 
+    public String getPhotoFilename(){
+        return "IMG"+getId().toString()+".jpg";
+    }
 
 }

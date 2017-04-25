@@ -55,19 +55,19 @@ public class PageListFragment extends ListFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.book_list_menu, menu);
+        inflater.inflate(R.menu.page_list_menu, menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_new_page:
-                Intent intent = new Intent(getActivity(), AddPageActivity.class);
+                Intent intent = new Intent(getActivity(), PageEditActivity.class);
                 intent.putExtra("bookId", bookId);
                 startActivityForResult(intent, 1);
                 return true;
             case R.id.menu_item_edit_book:
-                Intent intent2 = new Intent(getActivity(), EditBookActivity.class);
-                intent2.putExtra(EditBookFragment.EXTRA_BOOK_ID, bookId);
+                Intent intent2 = new Intent(getActivity(), BookEditActivity.class);
+                intent2.putExtra(BookEditFragment.EXTRA_BOOK_ID, bookId);
                 startActivityForResult(intent2, 2);
                 return true;
             default:

@@ -57,7 +57,7 @@ public class PageFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.add_page_suc, menu);
+        inflater.inflate(R.menu.page_edit_menu, menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
