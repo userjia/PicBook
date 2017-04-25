@@ -45,8 +45,6 @@ public class PageListFragment extends ListFragment {
         } else {
             getActivity().finish();
         }
-        assert book != null;
-        getActivity().setTitle(book.getTitle());
 
         PageAdapter pageAdapter = new PageAdapter(mPages);
         setListAdapter(pageAdapter);

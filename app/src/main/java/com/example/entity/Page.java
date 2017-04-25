@@ -42,10 +42,27 @@ public class Page {
 
     public JSONObject toJSON() throws JSONException {
         JSONObject json = new JSONObject();
-        json.put("id", id.toString());
-        json.put("num", num);
-        json.put("info", info);
-        json.put("text", text);
+
+        if (id!=null){
+            json.put("id",id.toString());
+        }else {
+            json.put("id"," ");
+        }
+        if(num!=null){
+            json.put("title", num);
+        }else {
+            json.put("title", " ");
+        }
+        if (info!=null){
+            json.put("author", info);
+        }else {
+            json.put("author", " ");
+        }
+        if (text!=null){
+            json.put("author", text);
+        }else {
+            json.put("author", " ");
+        }
         return json;
     }
 

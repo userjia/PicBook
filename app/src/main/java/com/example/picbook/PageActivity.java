@@ -46,11 +46,7 @@ public class PageActivity extends FragmentActivity {
                 page = book.getPage(pageId);
             }
         }
-        for (int i = 0; i < mPages.size(); i++) {
-            if (mPages.get(i).getId().equals(pageId)) {
-                mViewPager.setCurrentItem(i);
-            }
-        }
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
@@ -67,6 +63,12 @@ public class PageActivity extends FragmentActivity {
                 return mPages.size();
             }
         });
+
+        for (int i = 0; i < mPages.size(); i++) {
+            if (mPages.get(i).getId().equals(pageId)) {
+                mViewPager.setCurrentItem(i);
+            }
+        }
     }
 
     public static void saveImage(Bitmap photo, String path) {

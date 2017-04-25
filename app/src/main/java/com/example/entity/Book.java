@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.UUID;
 
 public class Book {
@@ -47,9 +48,22 @@ public class Book {
 
     public JSONObject toJSON() throws JSONException {//具体类转为json的方法
         JSONObject json = new JSONObject();
-        json.put("id", id.toString());
-        json.put("title", title);
-        json.put("author", author);
+        if (id!=null){
+            json.put("id",id.toString());
+        }else {
+            json.put("id"," ");
+        }
+        if(title!=null){
+            json.put("title", title);
+        }else {
+            json.put("title", " ");
+        }
+        if (author!=null){
+            json.put("author", author);
+        }else {
+            json.put("author", " ");
+        }
+
         //json.put("cover", "pic");
         if (mPages!=null) {
             JSONArray jsonArray = new JSONArray();
@@ -61,6 +75,8 @@ public class Book {
 
         return json;
     }
+
+    //JSONObject putInJson(JSONObject jsonObject, Map<String,String> content) throws JSONException{}
 
     public UUID getId() {
         return id;

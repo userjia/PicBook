@@ -22,7 +22,6 @@ public class DataTemp extends Application{//存储全局信息，在程序结束
 
     public static final String TAG="app";
     public static final String FILE_BOOKS="bookList.json";
-    public static final String FILE_PAGES="page";
 
     @Override
     public void onCreate() {
