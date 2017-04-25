@@ -3,6 +3,7 @@ package com.example.picbook;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.common.DataTemp;
+import com.example.common.PictrueUtils;
 import com.example.entity.Book;
 import com.example.entity.Lab;
 
@@ -116,8 +118,17 @@ public class BookEditFragment extends Fragment {
             }
         });
         photoView=(ImageView) v.findViewById(R.id.book_photo);
-
+        updatePhotoView();
         return v;
+    }
+
+    private void updatePhotoView(){
+        if(photoFile==null||!photoFile.exists()){
+            photoView.setImageDrawable(null);
+        }else {
+            Bitmap bitmap= PictrueUtils.getScaledBitmap(photoFile.getPath(),getActivity());
+            photoView.setImageBitmap(bitmap);
+        }
     }
 
     public static BookEditFragment newInstance(UUID bookId) {
@@ -126,5 +137,12 @@ public class BookEditFragment extends Fragment {
         BookEditFragment fragment = new BookEditFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode==REQUEST_PHOTO){
+            updatePhotoView();
+        }
     }
 }
