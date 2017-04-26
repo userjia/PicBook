@@ -193,9 +193,9 @@ public class Book {
 
     public boolean ifNullPath(){
         if (this.filePath==null){
-            return false;
+            return true;
         }else {
-            return  true;
+            return false;
         }
     }
 

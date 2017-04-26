@@ -48,11 +48,6 @@ public class PageFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        imageView.setImageBitmap(page.loadPic());
-    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -82,10 +77,6 @@ public class PageFragment extends Fragment {
             num.setText(page.getNum());
             info.setText(page.getInfo());
             text.setText(page.getText());
-            if (page.getPic() != null) {
-                Bitmap imageBitmap = BitmapFactory.decodeFile(page.getPic());
-                imageView.setImageBitmap(imageBitmap);
-            }
         }
         num.addTextChangedListener(new TextWatcher() {
             @Override

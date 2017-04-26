@@ -48,15 +48,18 @@ public class BookEditFragment extends Fragment {
         if (bookId != null) {
             book = DataTemp.getBook(bookId);
             //photoFile=book.getPhotoFile();
-            File externalFileDir=getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-            if (!book.ifNullPath()){///
+            if (book.ifNullPath()){///
+                File externalFileDir=getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
                 filePath=externalFileDir+book.getPhotoFilename();
             }else {
                 filePath= book.getFilePath();
             }
-            photoFile=new File(filePath);
+        }else {
+            book=new Book();
+            File externalFileDir=getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            filePath=externalFileDir+book.getPhotoFilename();
         }
+        photoFile=new File(filePath);
     }
 
     @Override

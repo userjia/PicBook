@@ -1,5 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 
 
@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -24,10 +24,10 @@
 
             <EditText
                 android:id="@+id/page_info"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Info"
-                android:inputType="number" />
+                android:inputType="text|number" />
         </LinearLayout>
 
         <EditText
@@ -35,22 +35,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/take_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="take photo" />
-
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/page_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-
         <Button
-            android:id="@+id/save_page"
+            android:id="@+id/take_page_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="add photo" />
+
+        <Button
+            android:id="@+id/commit_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="commit" />
 
     </LinearLayout>

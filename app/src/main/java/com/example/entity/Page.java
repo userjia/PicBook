@@ -27,7 +27,16 @@ public class Page {
     private String info;
     private String text;
     private boolean mark;
-    private String pic;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    private String filePath;
 
     public Page() {
         id = UUID.randomUUID();
@@ -38,6 +47,7 @@ public class Page {
         num = json.getString("num");
         info = json.getString("info");
         text = json.getString("text");
+        filePath=json.getString("filePath");
     }
 
     public JSONObject toJSON() throws JSONException {
@@ -63,16 +73,10 @@ public class Page {
         }else {
             json.put("author", " ");
         }
+        json.put("filePath",filePath);
         return json;
     }
 
-    public Bitmap loadPic(){
-        Bitmap imageBitmap=null;
-        if (pic!=null) {
-            imageBitmap = BitmapFactory.decodeFile("data/data/PicBook/files"+pic);
-        }
-        return imageBitmap;
-    }
 
     public String getInfo() {
         return info;
@@ -94,14 +98,6 @@ public class Page {
         this.mark = mark;
     }
 
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
-
     public void setInfo(String info) {
         this.info = info;
     }
@@ -120,6 +116,18 @@ public class Page {
 
     public void setNum(String num) {
         this.num = num;
+    }
+
+    public String getPhotoFilename(){
+        return "IMG"+getId().toString()+".jpg";
+    }
+
+    public boolean ifNullPath(){
+        if (this.filePath==null){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

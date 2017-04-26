@@ -113,7 +113,6 @@ public class PageListFragment extends ListFragment {
             ImageView imageView = (ImageView) convertView.findViewById(R.id.page_pic);
             textView1.setText(b.getNum());
             textView2.setText(b.getInfo());
-            imageView.setImageBitmap(b.loadPic());
             return convertView;
         }
     }

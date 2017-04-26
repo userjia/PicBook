@@ -55,7 +55,7 @@ public class PageActivity extends FragmentActivity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("bookId", bookId);
                 bundle.putSerializable("pageId", p.getId());
-                return PageFragment.newInstance(bundle);
+                return PageEditFragment.newInstance(bundle);
             }
 
             @Override
@@ -71,31 +71,11 @@ public class PageActivity extends FragmentActivity {
         }
     }
 
-    public static void saveImage(Bitmap photo, String path) {
-        try {
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path, false));
-            photo.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-            bos.flush();
-            bos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, requestCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
-            new DateFormat();
-            String filename = DateFormat.format("yyyyMMdd_hhmmss", Calendar.getInstance(Locale.CHINA)) + ".jpg";
 
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-
-            try {
-                OutputStream out=this.openFileOutput(filename, Context.MODE_PRIVATE);
-                out.write(data.getExtras().getByte("data"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
