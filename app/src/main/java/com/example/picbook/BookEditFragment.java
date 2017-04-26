@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class BookEditFragment extends Fragment {
     private UUID bookId;
     private File photoFile;
     ImageView photoView;
+    String filePath;
     public static final String EXTRA_BOOK_ID = "com.example.intent.book_id";
     private static final int REQUEST_PHOTO=2;
 
@@ -45,7 +47,15 @@ public class BookEditFragment extends Fragment {
         bookId = (UUID) getArguments().getSerializable(EXTRA_BOOK_ID);
         if (bookId != null) {
             book = DataTemp.getBook(bookId);
-            photoFile= Lab.get(getActivity()).getPhotoFile(book);
+            //photoFile=book.getPhotoFile();
+            File externalFileDir=getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+            if (!book.ifNullPath()){///
+                filePath=externalFileDir+book.getPhotoFilename();
+            }else {
+                filePath= book.getFilePath();
+            }
+            photoFile=new File(filePath);
         }
     }
 
@@ -60,7 +70,8 @@ public class BookEditFragment extends Fragment {
             case R.id.add_book_photo:
                 //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 //startActivityForResult(intent, 1);
-
+                saveBook();
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -84,21 +95,7 @@ public class BookEditFragment extends Fragment {
         button_add_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (title.getText() != null) {
-                    book = new Book();
-                    book.setTitle(title.getText().toString());
-                    book.setAuthor(author.getText().toString());
-                    book.setIntro(info.getText().toString());
-
-                    if (bookId != null) {
-                        DataTemp.setBook(bookId, book);
-                    } else {
-                        DataTemp.addBook(book);
-                    }
-
-                }
-                getActivity().setResult(Activity.RESULT_OK, null);
-                getActivity().finish();
+               saveBook();
             }
         });
 
@@ -145,4 +142,24 @@ public class BookEditFragment extends Fragment {
             updatePhotoView();
         }
     }
+
+    void saveBook(){
+        if (title.getText() != null) {
+            book = new Book();
+            book.setTitle(title.getText().toString());
+            book.setAuthor(author.getText().toString());
+            book.setIntro(info.getText().toString());
+            book.setFilePath(filePath);
+
+            if (bookId != null) {
+                DataTemp.setBook(bookId, book);
+            } else {
+                DataTemp.addBook(book);
+            }
+
+        }
+        getActivity().setResult(Activity.RESULT_OK, null);
+        getActivity().finish();
+    }
+
 }

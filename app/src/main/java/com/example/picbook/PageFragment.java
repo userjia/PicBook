@@ -66,9 +66,6 @@ public class PageFragment extends Fragment {
                 getActivity().setResult(Activity.RESULT_OK);
                 getActivity().finish();
                 return true;
-            case R.id.add_page_photo:
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 1);
             default:
                 return super.onOptionsItemSelected(item);
         }

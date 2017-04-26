@@ -1,11 +1,13 @@
 package com.example.entity;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
@@ -18,6 +20,17 @@ public class Book {
     private String intro;
     private ArrayList<Page> mPages;
     private String FILENAME;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    private File photoFile;
+    private String filePath;
 
     public String toString() {
         return title;
@@ -33,6 +46,7 @@ public class Book {
         id = UUID.fromString(json.getString("id"));
         title = json.getString("title");
         author = json.getString("author");
+        filePath=json.getString("cover");
         if (json.has("page")){
             JSONArray jsonArray = json.getJSONArray("page");
             if (jsonArray != null) {
@@ -64,7 +78,7 @@ public class Book {
             json.put("author", " ");
         }
 
-        //json.put("cover", "pic");
+        json.put("cover", filePath);
         if (mPages!=null) {
             JSONArray jsonArray = new JSONArray();
             for (Page p : mPages) {
@@ -118,6 +132,15 @@ public class Book {
         this.author = author;
     }
 
+    public File getPhotoFile() {
+
+        return photoFile;
+    }
+
+    public void setPhotoFile(File photoFile) {
+        this.photoFile = photoFile;
+    }
+
     public ArrayList<Page> getmPages() {
         if (mPages != null) {
             return mPages;
@@ -165,6 +188,15 @@ public class Book {
 
     public String getPhotoFilename(){
         return "IMG"+getId().toString()+".jpg";
+    }
+
+
+    public boolean ifNullPath(){
+        if (this.filePath==null){
+            return false;
+        }else {
+            return  true;
+        }
     }
 
 }

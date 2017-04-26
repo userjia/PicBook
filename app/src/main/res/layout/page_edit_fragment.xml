@@ -1,50 +1,59 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.picbook.PageFragment">
+    android:layout_height="wrap_content">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout">
+        android:orientation="vertical">
 
-        <EditText
-            android:layout_width="84dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/page_id"
-            android:inputType="number"
-            android:hint="Num"/>
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/page_info"
-            android:inputType="number"
-            android:hint="Info"
-            />
-    </LinearLayout>
+            android:orientation="horizontal">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-     />
+            <EditText
+                android:id="@+id/page_id"
+                android:layout_width="84dp"
+                android:layout_height="wrap_content"
+                android:hint="Num"
+                android:inputType="number" />
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView"
-        android:layout_below="@+id/linearLayout">
+            <EditText
+                android:id="@+id/page_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Info"
+                android:inputType="number" />
+        </LinearLayout>
+
         <EditText
             android:id="@+id/page_text"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/take_page"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="take photo" />
 
-    </ScrollView>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-</RelativeLayout>
+
+        <Button
+            android:id="@+id/save_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="commit" />
+
+    </LinearLayout>
+</ScrollView>
+
+

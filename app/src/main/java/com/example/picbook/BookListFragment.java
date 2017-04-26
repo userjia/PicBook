@@ -1,6 +1,7 @@
 package com.example.picbook;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -14,7 +15,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.example.common.DataTemp;
+import com.example.common.PictrueUtils;
 import com.example.entity.Book;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class BookListFragment extends ListFragment {
@@ -69,6 +73,7 @@ public class BookListFragment extends ListFragment {
         ((BookAdapter) getListAdapter()).notifyDataSetChanged();
     }
 
+
     private class BookAdapter extends ArrayAdapter<Book> {//自定义适配器
         public BookAdapter(ArrayList<Book> books) {
             super(getActivity(), android.R.layout.simple_list_item_1, books);
@@ -82,10 +87,17 @@ public class BookListFragment extends ListFragment {
             Book b = getItem(position);
             TextView textView1 = (TextView) convertView.findViewById(R.id.book_title);
             TextView textView2 = (TextView) convertView.findViewById(R.id.book_author);
-            ImageView imageView = (ImageView) convertView.findViewById(R.id.book_cover);
+            ImageView photoView = (ImageView) convertView.findViewById(R.id.book_cover);
             textView1.setText(b.getTitle());
             textView2.setText(b.getAuthor());
-            imageView.setImageBitmap(b.getCover());
+
+            String filePath=b.getFilePath();
+            if(filePath==null){
+                photoView.setImageDrawable(null);
+            }else {
+                Bitmap bitmap= PictrueUtils.getScaledBitmap(filePath,getActivity());
+                photoView.setImageBitmap(bitmap);
+            }
 
             return convertView;
         }

@@ -50,15 +50,9 @@ public class PageEditFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.complete:
-                if (bookId != null) {
-                    DataTemp.addPage(bookId, page);
-                }
-                getActivity().setResult(Activity.RESULT_OK);
-                getActivity().finish();
+                savePage();
                 return true;
-            case R.id.add_page_photo:
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 1);
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -122,5 +116,13 @@ public class PageEditFragment extends Fragment {
         PageEditFragment fragment = new PageEditFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    void savePage(){
+        if (bookId != null) {
+            DataTemp.addPage(bookId, page);
+        }
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
     }
 }
