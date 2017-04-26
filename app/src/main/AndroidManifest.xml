@@ -29,6 +29,10 @@
             android:name=".PageEditActivity">
         </activity>
 
+        <activity
+            android:name=".PicDrawActivity">
+        </activity>
+
     </application>
 
 </manifest>

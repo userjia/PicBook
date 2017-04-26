@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Info"
-                android:inputType="text|number" />
+                android:inputType="text" />
         </LinearLayout>
 
         <EditText
@@ -40,11 +40,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/take_page_photo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="add photo" />
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/take_page_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="add photo" />
+
+            <Button
+                android:id="@+id/page_draw_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="draw"
+                android:visibility="invisible" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/commit_page"

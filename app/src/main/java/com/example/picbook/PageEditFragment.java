@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -40,6 +41,7 @@ public class PageEditFragment extends Fragment {
     private UUID bookId;
     private ImageView photoView;
     private UUID pageId;
+    private Button draw;
     private static final int REQUEST_PHOTO=2;
     File photoFile;
     String filePath;
@@ -99,6 +101,7 @@ public class PageEditFragment extends Fragment {
         takePhoto = (Button) v.findViewById(R.id.take_page_photo);
         commit = (Button) v.findViewById(R.id.commit_page);
         photoView=(ImageView) v.findViewById(R.id.page_photo);
+        draw=(Button)v.findViewById(R.id.page_draw_pic);
         if (pageId != null) {
             num.setText(page.getNum());
             info.setText(page.getInfo());
@@ -173,21 +176,32 @@ public class PageEditFragment extends Fragment {
 
         updatePhotoView();
 
+        draw.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent editPic=new Intent(getActivity(),PicDrawActivity.class);
+                editPic.putExtra("pic",filePath);
+                startActivityForResult(editPic,1);
+            }
+        });
+
         return v;
     }
 
     private void updatePhotoView(){
         if(photoFile==null||!photoFile.exists()){
             photoView.setImageDrawable(null);
+            draw.setVisibility(View.INVISIBLE);
         }else {
             Bitmap bitmap= PictrueUtils.getScaledBitmap(photoFile.getPath(),getActivity());
             photoView.setImageBitmap(bitmap);
+            draw.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode==REQUEST_PHOTO){
+        if(requestCode==REQUEST_PHOTO||requestCode==1){
             updatePhotoView();
         }
     }
